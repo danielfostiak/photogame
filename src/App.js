@@ -15,9 +15,9 @@ function App() {
   const [randomContrast, setRandomContrast] = useState(Math.random() * 201 + 1);
   const [results, setResults] = useState(false);
 
-  const originalImageStyle = {
-    filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
-  };
+  // const originalImageStyle = {
+  //   filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
+  // };
 
   const randomImageStyle = {
     filter: `saturate(${randomSaturation}%) contrast(${randomContrast}%) brightness(${randomBrightness}%)`,
@@ -63,7 +63,15 @@ function App() {
       >
         <div className="card w-200 bg-base-100 shadow-xl m-1.5">
           <figure>
-            <img src={imageURL} alt="original" style={originalImageStyle} />
+            <div className={`image-container`}>
+              <img
+                src={imageURL}
+                alt="original"
+                style={{
+                  filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
+                }}
+              />
+            </div>
           </figure>
         </div>
         <div className="card w-200 bg-base-100 shadow-xl m-1.5">
