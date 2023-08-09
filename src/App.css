@@ -3,5 +3,6 @@
 @tailwind utilities;
 
 .image-container img {
-  transition: filter 0.1s ease-in-out;
+  /* transition: filter 0.1s ease-in-out; */
+  will-change: filter;
 }

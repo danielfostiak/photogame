@@ -61,7 +61,7 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <div className="card w-200 bg-base-100 shadow-xl m-1.5">
+        <div className="card w-200 bg-base-100 shadow-xl m-1.5 rounded-2xl">
           <figure>
             <div className={`image-container`}>
               <img
@@ -142,6 +142,14 @@ function App() {
         <button onClick={handleConfirm} className="btn btn-success">
           Confirm
         </button>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         {results ? (
           <h1>{`${
             (results.saturation + results.brightness + results.contrast) / 3
