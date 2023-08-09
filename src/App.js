@@ -6,31 +6,34 @@ function App() {
   const [saturation, setSaturation] = useState(100);
   const [contrast, setContrast] = useState(100);
   const [brightness, setBrightness] = useState(100);
-  const [randomSaturation, setRandomSaturation] = useState(
-    Math.random() * 201 + 1
-  );
-  const [randomBrightness, setRandomBrightness] = useState(
-    Math.random() * 201 + 1
-  );
-  const [randomContrast, setRandomContrast] = useState(Math.random() * 201 + 1);
+  const [randomData, setRandomData] = useState({
+    saturation: Math.random() * 201 + 1,
+    contrast: Math.random() * 201 + 1,
+    brightness: Math.random() * 201 + 1,
+  });
   const [results, setResults] = useState(false);
 
-  // const originalImageStyle = {
-  //   filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
-  // };
+  const originalImageStyle = {
+    filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
+  };
 
   const randomImageStyle = {
-    filter: `saturate(${randomSaturation}%) contrast(${randomContrast}%) brightness(${randomBrightness}%)`,
+    filter: `saturate(${randomData.saturation}%) contrast(${randomData.contrast}%) brightness(${randomData.brightness}%)`,
   };
 
   const handleConfirm = () => {
     setResults({
       saturation:
-        100 * (1 - Math.abs(randomSaturation - saturation) / randomSaturation),
+        100 *
+        (1 -
+          Math.abs(randomData.saturation - saturation) / randomData.saturation),
       contrast:
-        100 * (1 - Math.abs(randomContrast - contrast) / randomContrast),
+        100 *
+        (1 - Math.abs(randomData.contrast - contrast) / randomData.contrast),
       brightness:
-        100 * (1 - Math.abs(randomBrightness - brightness) / randomBrightness),
+        100 *
+        (1 -
+          Math.abs(randomData.brightness - brightness) / randomData.brightness),
     });
     setTimeout(() => {
       newImage();
@@ -40,9 +43,11 @@ function App() {
 
   const newImage = () => {
     setImageURL(imageURL + "?");
-    setRandomBrightness(Math.random() * 201 + 1);
-    setRandomContrast(Math.random() * 201 + 1);
-    setRandomSaturation(Math.random() * 201 + 1);
+    setRandomData({
+      saturation: Math.random() * 201 + 1,
+      contrast: Math.random() * 201 + 1,
+      brightness: Math.random() * 201 + 1,
+    });
     setSaturation(100);
     setBrightness(100);
     setContrast(100);
@@ -64,19 +69,13 @@ function App() {
         <div className="card w-200 bg-base-100 shadow-xl m-1.5 rounded-2xl">
           <figure>
             <div className={`image-container`}>
-              <img
-                src={imageURL}
-                alt="original"
-                style={{
-                  filter: `saturate(${saturation}%) contrast(${contrast}%) brightness(${brightness}%)`,
-                }}
-              />
+              <img src={imageURL} alt="original" style={originalImageStyle} />
             </div>
           </figure>
         </div>
         <div className="card w-200 bg-base-100 shadow-xl m-1.5">
           <figure>
-            <img src={imageURL} alt="original" style={randomImageStyle} />
+            <img src={imageURL} alt="random" style={randomImageStyle} />
           </figure>
         </div>
       </div>
