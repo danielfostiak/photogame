@@ -43,11 +43,12 @@ function App() {
 
   const newImage = () => {
     setImageURL(imageURL + "?");
-    setRandomData({
+    const random = {
       saturation: Math.random() * 201 + 1,
       contrast: Math.random() * 201 + 1,
       brightness: Math.random() * 201 + 1,
-    });
+    }
+    setRandomData(random);
     setSaturation(100);
     setBrightness(100);
     setContrast(100);
