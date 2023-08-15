@@ -43,12 +43,11 @@ function App() {
 
   const newImage = () => {
     setImageURL(imageURL + "?");
-    const random = {
+    setRandomData({
       saturation: Math.random() * 201 + 1,
       contrast: Math.random() * 201 + 1,
       brightness: Math.random() * 201 + 1,
-    }
-    setRandomData(random);
+    });
     setSaturation(100);
     setBrightness(100);
     setContrast(100);
@@ -76,7 +75,9 @@ function App() {
         </div>
         <div className="card w-200 bg-base-100 shadow-xl m-1.5">
           <figure>
-            <img src={imageURL} alt="random" style={randomImageStyle} />
+            <div className={`image-container`}>
+              <img src={imageURL} alt="random" style={randomImageStyle} />
+            </div>
           </figure>
         </div>
       </div>
